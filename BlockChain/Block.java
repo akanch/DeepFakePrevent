@@ -5,7 +5,7 @@ public class Block {
 	public String hash;
 	public String previousHash;
 	private String data;
-	private long timeStamp;
+	private long timestamp;
 	
 	//Block constructor
 	public Block(String data, String previousHash) {
@@ -16,11 +16,11 @@ public class Block {
 	}
 	
 	//function to calculate hash using SHA-256
-	public calculateHash() {
-		String calculatedHash = StringUtil.apply256(
+	public String calculateHash() {
+		String calculatedHash = StringUtil.applySha256(
 			previousHash +
 			Long.toString(timestamp) +
-			date
+			data
 		);
 		return calculatedHash;
 	}
