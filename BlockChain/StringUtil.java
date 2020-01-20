@@ -2,7 +2,7 @@ import java.security.MessageDigest;
 
 public class StringUtil {
 	
-	// applies SHA-256 to a string and returns the hash
+	//applies SHA-256 to a string and returns the hash
 	public static StringUtil(String input) {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
