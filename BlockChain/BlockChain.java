@@ -13,4 +13,26 @@ public class BlockChain {
 		
 		System.out.println(Arrays.toString(blockchain.toArray()));
 	}
+	
+	//this function checks the chain is valid
+	public static Boolean isChainValid() {
+		Block currentBlock;
+		Block previousBlock;
+		
+		for (int i = 1; i < blockchain.size(); i++) {
+			currentBlock = blockchain.get(i);
+			previousBlock = blockchain.get(i-1);
+			//checks if the hash of the current block is correct
+			if (!currentBlock.hash.equals(currentBlock.calculateHash())) {
+				System.out.println("Current hash value invalid");
+				return false;
+			}
+			//checks if the previous hash value in the current block is valid
+			if (!currentBlock.previousHash.equals(previousBlock.hash)) {
+				System.out.println("Previous hash value invalid");
+				return false;
+			}
+		}
+		return true;
+	}
 }
