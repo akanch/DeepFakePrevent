@@ -6,6 +6,7 @@ public class Block {
 	public String previousHash;
 	private String data;
 	private long timestamp;
+	private int nonce;
 	
 	//Block constructor
 	public Block(String data, String previousHash) {
@@ -20,8 +21,19 @@ public class Block {
 		String calculatedHash = StringUtil.applySha256(
 			previousHash +
 			Long.toString(timestamp) +
+			Integer.toString(nonce) +
 			data
 		);
 		return calculatedHash;
+	}
+	
+	//function to mine each block
+	public void mineBlock(int difficulty) {
+		String target = new String(new char[difficulty]).replace('\0', '0'); //this creates a string with all zeroes that is difficulty-legnth
+		while (!hash.substring(0, difficulty).equals(target)) {
+			nonce++;
+			hash = calculateHash();
+		}
+		System.out.println("Block Mined: " + hash);
 	}
 }

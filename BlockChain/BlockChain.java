@@ -4,14 +4,29 @@ import java.util.ArrayList;
 public class BlockChain {
 	
 	public static ArrayList<Block> blockchain = new ArrayList<Block>();
+	public static int difficulty = 5;
 	
 	public static void main(String[] args) {	
 		//add our blocks to the blockchain ArrayList:
-		blockchain.add(new Block("first block", "0"));		
-		blockchain.add(new Block("second block",blockchain.get(blockchain.size()-1).hash)); 
-		blockchain.add(new Block("third block",blockchain.get(blockchain.size()-1).hash));
+		blockchain.add(new Block("First block", "0"));
+		System.out.println("Trying to mine first block...");
+		blockchain.get(0).mineBlock(difficulty);
+			
+		blockchain.add(new Block("Second block",blockchain.get(blockchain.size()-1).hash)); 
+		System.out.println("Trying to mine second block...");
+		blockchain.get(1).mineBlock(difficulty);
 		
-		System.out.println(Arrays.toString(blockchain.toArray()));
+		blockchain.add(new Block("Third block",blockchain.get(blockchain.size()-1).hash));
+		System.out.println("Trying to mine third block...");
+		blockchain.get(2).mineBlock(difficulty);
+		
+		System.out.println("\nBlockchain is valid: " + isChainValid());
+		
+		//print out the hashes of each block
+		for (int i = 0; i < blockchain.size(); i++) {
+			System.out.println("\nHash for block " + (i + 1) + ": " + blockchain.get(i).hash);
+			System.out.println("Previous Hash for block " + (i + 1) + ": " + blockchain.get(i).previousHash);
+		}
 	}
 	
 	//this function checks the chain is valid
