@@ -29,7 +29,7 @@ public class BlockChain {
 		}
 	}
 	
-	//this function checks the chain is valid
+	//this function checks if the chain is valid
 	public static Boolean isChainValid() {
 		Block currentBlock;
 		Block previousBlock;
